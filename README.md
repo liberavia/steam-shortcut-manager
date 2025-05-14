@@ -14,7 +14,7 @@ A command-line tool for managing non-Steam game shortcuts within your Steam libr
 * **Customizable Artwork:**
     * Generates backgrounds with color gradients.
     * Prominently places the app's logo on the generated artwork.
-    * Optional branding: Allows for a custom logo (e.g., DeckStore logo) to be discreetly placed on larger artwork pieces.
+    * Optional branding: Allows for a custom watermark logo (e.g.,  logo) to be discreetly placed on larger artwork pieces.
 * **Remove Shortcuts:** Cleanly removes shortcuts previously added by this tool or matching a specific tag.
 * **Check Existing Shortcuts:** Verify if a shortcut for a particular application already exists.
 
@@ -70,7 +70,7 @@ flatpak run org.liberavia.steamshortcutmanager [options]
     * **Example:** `--action add`
 
 * `--appid_tag APPID_TAG`
-    * **Description:** A unique identifier for the application you are managing. This is typically the Flatpak Application ID (e.g., `com.brave.Browser`) or any other string that uniquely identifies the app for this tool. It's used for creating an internal `DeckStore_APPID_TAG` tag in Steam and for the `FlatpakAppID` field in the shortcut data. This is a required argument.
+    * **Description:** A unique identifier for the application you are managing. This is typically the Flatpak Application ID (e.g., `com.brave.Browser`) or any other string that uniquely identifies the app for this tool. It's used for creating an internal `SSM_APPID_TAG` tag in Steam and for the `FlatpakAppID` field in the shortcut data. This is a required argument.
     * **Example:** `--appid_tag "org.videolan.VLC"`
 
 * `--name "APPLICATION NAME"`
@@ -92,9 +92,9 @@ flatpak run org.liberavia.steamshortcutmanager [options]
     * **Example (for Flatpak):** `--params "run org.videolan.VLC"`
     * **Example (for a native game with arguments):** `--params "--fullscreen --skip-intro"`
 
-* `--deckstore_logo_path "/path/to/branding_logo.png"`
-    * **Description:** Optional. An absolute path to an image file (preferably a PNG with transparency) that will be used as a branding logo (e.g., your DeckStore logo). It will be discreetly placed on the generated Hero and Portrait/Grid artwork.
-    * **Example:** `--deckstore_logo_path "/home/deck/Pictures/my_deckstore_logo.png"`
+* `--watermark "/path/to/branding_logo.png"`
+    * **Description:** Optional. An absolute path to an image file (preferably a PNG with transparency) that will be used as a branding logo. It will be discreetly placed on the generated Hero and Portrait/Grid artwork.
+    * **Example:** `--watermark "/home/deck/Pictures/my_branding_logo.png"`
 
 ### Usage Examples
 
@@ -107,7 +107,7 @@ flatpak run org.liberavia.steamshortcutmanager [options]
         --exe "/usr/bin/flatpak" \
         --params "run com.brave.Browser" \
         --icon "/home/deck/Downloads/brave_icon.png" \
-        --deckstore_logo_path "/home/deck/assets/deckstore_badge.png" 
+        --watermark "/home/deck/assets/watermark_badge.png" 
     ```
 
 2.  **Adding a Native Linux Game:**
@@ -140,7 +140,7 @@ flatpak run org.liberavia.steamshortcutmanager [options]
 **Important Notes:**
 
 * **Steam Restart:** After adding or removing shortcuts, you **must restart Steam** for the changes to take full effect and for artwork to update correctly.
-* **Absolute Paths:** Always use absolute paths for `--icon`, `--exe` (unless it's a command in PATH like `flatpak`), and `--deckstore_logo_path`.
+* **Absolute Paths:** Always use absolute paths for `--icon`, `--exe` (unless it's a command in PATH like `flatpak`), and `--watermark`.
 * **Permissions:** The Flatpak needs appropriate filesystem permissions to access your Steam user data directories and the provided icon paths. The manifest currently uses `--filesystem=host`, which is broad. More specific permissions might be required for Flathub submission.
 
 ## License
