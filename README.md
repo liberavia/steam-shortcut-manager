@@ -1,0 +1,1 @@
+# steam-shortcut-manager
