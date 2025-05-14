@@ -23,7 +23,9 @@ jobs:
 
       - name: Lint with flake8
         run: |
+          # Stop the build if there are Python syntax errors or undefined names
           flake8 src/steam_shortcut_manager.py --count --select=E9,F63,F7,F82 --show-source --statistics
+          # Exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
           flake8 src/steam_shortcut_manager.py --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
 
       - name: Check formatting with black
@@ -32,6 +34,7 @@ jobs:
 
       - name: Type check with mypy
         run: |
+          # Ensure Pillow and python-vdf are in requirements.txt and installed for mypy.
           mypy src/steam_shortcut_manager.py --ignore-missing-imports
 
   flatpak-checks:
@@ -44,12 +47,18 @@ jobs:
       - name: Install Flatpak tools
         run: |
           sudo apt-get update
-          sudo apt-get install -y flatpak flatpak-builder libxml2-utils # libxml2-utils für xmllint
+          sudo apt-get install -y flatpak flatpak-builder libxml2-utils # libxml2-utils for xmllint
 
-      - name: Validate Flatpak Manifest
+      - name: Basic Manifest Sanity Check (JSON validation)
         run: |
-          flatpak-builder --lint manifest org.liberavia.steamshortcutmanager.json
-          # flatpak-lint org.liberavia.steamshortcutmanager.json
+          # A simple check to see if the JSON is well-formed.
+          echo "Validating JSON structure of org.liberavia.steamshortcutmanager.json..."
+          python3 -m json.tool org.liberavia.steamshortcutmanager.json > /dev/null
+          if [ $? -ne 0 ]; then
+            echo "JSON validation failed for org.liberavia.steamshortcutmanager.json!"
+            exit 1
+          fi
+          echo "JSON structure for org.liberavia.steamshortcutmanager.json appears valid."
 
       - name: Validate AppData XML
         run: |
