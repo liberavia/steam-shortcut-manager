@@ -13,12 +13,22 @@
             "name": "python3-requirements",
             "buildsystem": "simple",
             "build-commands": [
-                "pip3 install --prefix=${FLATPAK_DEST} -r requirements.txt"
+                "pip3 install --no-index --find-links=\"file://${PWD}\" --prefix=${FLATPAK_DEST} -r requirements.txt"
             ],
             "sources": [
                 {
                     "type": "file",
                     "path": "requirements.txt"
+                },
+                {
+                    "type": "file",
+                    "path": "flatpak_python_sources/pillow-11.2.1-cp311-cp311-manylinux_2_28_x86_64.whl",
+                    "sha256": "8f4f3724c068be008c08257207210c138d5f3731af6c155a81c2b09a9eb3a788"
+                },
+                {
+                    "type": "file",
+                    "path": "flatpak_python_sources/vdf-3.4-py2.py3-none-any.whl",
+                    "sha256": "68c1a125cc49e343d535af2dd25074e9cb0908c6607f073947c4a04bbe234534"
                 }
             ]
         },
@@ -34,9 +44,6 @@
                     "type": "dir",
                     "path": "."
                 }
-            ],
-            "post-install": [
-                "ln -sf /app/bin/steam-shortcut-manager /app/bin/org.liberavia.steamshortcutmanager"
             ]
         }
     ]

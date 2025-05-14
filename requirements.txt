@@ -1,4 +1,4 @@
 # Python package dependencies
 
 Pillow>=9.0.0 # For image processing (artwork generation)
-python-vdf>=3.4 # For reading/writing Steam VDF files
+vdf>=3.4 # For reading/writing Steam VDF files
