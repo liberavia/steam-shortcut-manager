@@ -31,34 +31,34 @@ flatpak install flathub org.liberavia.steamshortcutmanager
 ### Building from Source (For Developers or Early Adopters)
 
 1.  **Clone the Repository:**
-    '''bash
+    ```bash
     git clone https://github.com/liberavia/steam-shortcut-manager.git 
     cd steam-shortcut-manager
-    '''
+    ```
 
 2.  **Ensure Dependencies are Met:**
     * You need `flatpak` and `flatpak-builder` installed on your system. Refer to your distribution's documentation for installation instructions.
 
 3.  **Build and Install the Flatpak:**
-    '''bash
+    ```bash
     flatpak-builder --user --install --force-clean build-dir org.liberavia.steamshortcutmanager.json
-    '''
+    ```
     This command builds the Flatpak application, installs it for the current user, and cleans the build directory.
 
 4.  **Run the Application:**
     After a successful build and installation, you can run the tool:
-    '''bash
+    ```bash
     flatpak run org.liberavia.steamshortcutmanager --help
-    '''
+    ```
 
 ## Usage
 
 The tool is operated via the command line.
 
 **General Syntax:**
-'''bash
+```bash
 flatpak run org.liberavia.steamshortcutmanager [options]
-'''
+```
 
 ### Options Explained
 
@@ -99,7 +99,7 @@ flatpak run org.liberavia.steamshortcutmanager [options]
 ### Usage Examples
 
 1.  **Adding a Flatpak Application (e.g., Brave Browser):**
-    '''bash
+    ```bash
     flatpak run org.liberavia.steamshortcutmanager \
         --action add \
         --appid_tag "com.brave.Browser" \
@@ -108,10 +108,10 @@ flatpak run org.liberavia.steamshortcutmanager [options]
         --params "run com.brave.Browser" \
         --icon "/home/deck/Downloads/brave_icon.png" \
         --deckstore_logo_path "/home/deck/assets/deckstore_badge.png" 
-    '''
+    ```
 
 2.  **Adding a Native Linux Game:**
-    '''bash
+    ```bash
     flatpak run org.liberavia.steamshortcutmanager \
         --action add \
         --appid_tag "mycoolgame_native" \
@@ -119,22 +119,22 @@ flatpak run org.liberavia.steamshortcutmanager [options]
         --exe "/home/deck/Games/MyCoolGame/start_game.sh" \
         --params "--nogpucheck" \
         --icon "/home/deck/Games/MyCoolGame/artwork/icon.png"
-    '''
+    ```
 
 3.  **Removing an Application:**
     (Assumes `com.brave.Browser` was the `appid_tag` used when adding)
-    '''bash
+    ```bash
     flatpak run org.liberavia.steamshortcutmanager \
         --action remove \
         --appid_tag "com.brave.Browser"
-    '''
+    ```
 
 4.  **Checking if an Application Shortcut Exists:**
-    '''bash
+    ```bash
     flatpak run org.liberavia.steamshortcutmanager \
         --action check \
         --appid_tag "com.brave.Browser"
-    '''
+    ```
     *(This will return an exit code: 0 if found, 1 if not found, >1 for an error).*
 
 **Important Notes:**
