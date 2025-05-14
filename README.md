@@ -23,10 +23,10 @@ A command-line tool for managing non-Steam game shortcuts within your Steam libr
 ### From Flathub (Future)
 
 Once officially published on Flathub, you will be able to install it using:
-'''bash
+ ```bash
 flatpak install flathub org.liberavia.steamshortcutmanager
-'''
-*(Replace `org.liberavia.steamshortcutmanager` with the final, published App ID).*
+```
+
 
 ### Building from Source (For Developers or Early Adopters)
 
