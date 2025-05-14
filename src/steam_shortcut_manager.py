@@ -9,6 +9,7 @@ import binascii
 import zlib
 import vdf
 from pathlib import Path
+from typing import List, Optional  # Importiere List und Optional für Type Hinting
 
 try:
     from PIL import Image, ImageDraw, ImageOps
@@ -21,7 +22,7 @@ except ImportError:
         file=sys.stderr,
     )
 
-_crc32_tab_manual = []
+_crc32_tab_manual: List[int] = []  # mypy fix: Type annotation hinzugefügt
 TARGET_SIZES = {
     "library_header_capsule": (920, 430),
     "portrait": (600, 900),
@@ -34,10 +35,10 @@ GRADIENT_COLOR_END = (20, 20, 30)
 APP_LOGO_SCALE_FACTOR_LANDSCAPE = 0.75
 APP_LOGO_SCALE_FACTOR_PORTRAIT = 0.8
 APP_LOGO_SCALE_FACTOR_ICON = 0.8
-TAG_PREFIX = "SSM"  # Changed from DeckStore
+TAG_PREFIX = "SSM"
 
 
-def find_steam_userdata_path():
+def find_steam_userdata_path() -> Optional[Path]:  # Rückgabetyp Optional[Path]
     """Finds the most likely active Steam userdata directory."""
     home = Path.home()
     steam_paths_to_check = [
@@ -46,7 +47,7 @@ def find_steam_userdata_path():
         home / ".steam/steam/userdata",
         home / ".var/app/com.valvesoftware.Steam/data/Steam/userdata",
     ]
-    candidate_user_dirs = []
+    candidate_user_dirs: List[dict] = []  # Expliziter Typ für leere Liste
     for steam_base_path in steam_paths_to_check:
         if steam_base_path.is_dir():
             for user_id_dir in steam_base_path.iterdir():
@@ -70,8 +71,8 @@ def find_steam_userdata_path():
 
     candidate_user_dirs.sort(key=lambda x: x["mtime"], reverse=True)
 
-    latest_login_timestamp = 0
-    active_user_dir_from_login = None
+    latest_login_timestamp: int = 0  # Expliziter Typ
+    active_user_dir_from_login: Optional[Path] = None  # Expliziter Typ
     for candidate in candidate_user_dirs:
         loginusers_path = candidate["steam_base"].parent / "config/loginusers.vdf"
         user_id_str_candidate = candidate["user_id_str"]
@@ -165,8 +166,8 @@ def create_gradient_image(
     height: int,
     color_start_rgb: tuple,
     color_end_rgb: tuple,
-    direction="vertical",
-) -> Image.Image:
+    direction: str = "vertical",
+) -> Image.Image:  # Added type hint for direction
     """Creates an image with a linear gradient."""
     base = Image.new("RGB", (width, height), color_start_rgb)
     draw = ImageDraw.Draw(base)
@@ -206,7 +207,7 @@ def save_steam_artwork(
     artwork_short_appid_str: str,
     app_logo_source_path_str: str,
     grid_dir: Path,
-    watermark_logo_path_str: str = None,
+    watermark_logo_path_str: Optional[str] = None,  # mypy fix: Optional[str]
 ):
     """Saves all standard Steam artwork types with enhancements."""
     if not PIL_AVAILABLE:
@@ -217,11 +218,49 @@ def save_steam_artwork(
         return False
 
     app_logo_source_path = Path(app_logo_source_path_str)
+
+    print(
+        f"DEBUG_ARTWORK: Received app_logo_source_path_str: '{app_logo_source_path_str}'"
+    )
+    print(f"DEBUG_ARTWORK: Path object app_logo_source_path: '{app_logo_source_path}'")
+    print(
+        f"DEBUG_ARTWORK: app_logo_source_path.exists(): {app_logo_source_path.exists()}"
+    )
+    print(
+        f"DEBUG_ARTWORK: app_logo_source_path.is_file(): {app_logo_source_path.is_file()}"
+    )
+    print(
+        f"DEBUG_ARTWORK: app_logo_source_path.is_dir(): {app_logo_source_path.is_dir()}"
+    )
+
     if not grid_dir or not app_logo_source_path.is_file():
         print(
             f"ERROR: Invalid app logo source path or grid directory. AppLogo='{app_logo_source_path}', Grid='{grid_dir}'",
             file=sys.stderr,
         )
+        if (
+            grid_dir
+            and app_logo_source_path.exists()
+            and not app_logo_source_path.is_file()
+        ):
+            print(
+                f"DEBUG_ARTWORK: The path '{app_logo_source_path}' exists but is not a file (it's a directory or other type)."
+            )
+        elif grid_dir and not app_logo_source_path.exists():
+            print(f"DEBUG_ARTWORK: The path '{app_logo_source_path}' does not exist.")
+            try:
+                parent_dir = app_logo_source_path.parent
+                print(
+                    f"DEBUG_ARTWORK: Checking parent directory '{parent_dir}'. Exists: {parent_dir.exists()}, IsDir: {parent_dir.is_dir()}"
+                )
+                if parent_dir.exists() and parent_dir.is_dir():
+                    print(f"DEBUG_ARTWORK: Contents of '{parent_dir}':")
+                    for item in parent_dir.iterdir():
+                        print(f"  - {item.name} {'(DIR)' if item.is_dir() else ''}")
+            except Exception as e_debug:
+                print(
+                    f"DEBUG_ARTWORK: Error trying to list parent directory: {e_debug}"
+                )
         return False
 
     try:
@@ -445,7 +484,7 @@ def add_shortcut(
     exe_param: str,
     launch_options_param: str,
     icon_source_param: str,
-    watermark_logo_param: str = None,
+    watermark_logo_param: Optional[str] = None,  # mypy fix: Optional[str]
 ):
     """Adds a shortcut to Steam."""
     shortcuts_path = userdata_path / "config/shortcuts.vdf"
@@ -479,7 +518,7 @@ def add_shortcut(
         next_id = numeric_keys[-1] + 1
     shortcut_key_str = str(next_id)
 
-    tag_to_find = f"{TAG_PREFIX}_{flatpak_appid_tag}"  # Use the new TAG_PREFIX
+    tag_to_find = f"{TAG_PREFIX}_{flatpak_appid_tag}"
     for key, entry_dict in shortcuts.items():
         if (
             isinstance(entry_dict, dict)
@@ -522,7 +561,7 @@ def add_shortcut(
         "DevkitGameID": "",
         "DevkitOverrideAppID": 0,
         "LastPlayTime": 0,
-        "FlatpakAppID": flatpak_appid_tag,  # This field can keep its original purpose
+        "FlatpakAppID": flatpak_appid_tag,
         "tags": {"0": tag_to_find},
     }
     if not os.path.isabs(exe_param) and shortcut_entry["StartDir"] == ".":
@@ -585,9 +624,7 @@ def remove_shortcut(userdata_path: Path, flatpak_appid_tag_to_remove: str):
 
     shortcut_key_to_delete = None
     shortcut_entry_to_delete = None
-    tag_to_find_for_removal = (
-        f"{TAG_PREFIX}_{flatpak_appid_tag_to_remove}"  # Use the new TAG_PREFIX
-    )
+    tag_to_find_for_removal = f"{TAG_PREFIX}_{flatpak_appid_tag_to_remove}"
 
     for key, entry_dict in list(current_shortcuts.items()):
         if (
@@ -676,9 +713,7 @@ def check_shortcut(userdata_path: Path, flatpak_appid_tag_to_check: str):
         print(f"ERROR: Failed reading {shortcuts_path} for check: {e}", file=sys.stderr)
         return False
 
-    tag_to_find_for_check = (
-        f"{TAG_PREFIX}_{flatpak_appid_tag_to_check}"  # Use the new TAG_PREFIX
-    )
+    tag_to_find_for_check = f"{TAG_PREFIX}_{flatpak_appid_tag_to_check}"
     for entry_dict in shortcuts.values():
         if (
             isinstance(entry_dict, dict)
@@ -707,7 +742,7 @@ if __name__ == "__main__":
     parser.add_argument(
         "--appid_tag",
         required=True,
-        help=f"Unique tag for the app (e.g., Flatpak App ID like 'com.brave.Browser'). Used for the '{TAG_PREFIX}_' tag.",  # Updated help text
+        help=f"Unique tag for the app (e.g., Flatpak App ID like 'com.brave.Browser'). Used for the '{TAG_PREFIX}_' tag.",
     )
     parser.add_argument(
         "--name", help="Display name of the app in Steam. Required for 'add'."
