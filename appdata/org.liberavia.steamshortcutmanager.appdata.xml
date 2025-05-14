@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="console-application">
+  <id>org.liberavia.steamshortcutmanager</id> <name>Steam Shortcut Manager</name>
+  <summary>Manage non-Steam game shortcuts and artwork in your Steam library.</summary>
+
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>GPLv3</project_license>
+
+  <description>
+    <p>
+      Steam Shortcut Manager is a command-line tool that allows users to easily add, remove,
+      and check for non-Steam game shortcuts in their Steam library. It also features
+      automatic generation and assignment of various Steam grid artwork types, including
+      hero banners, grid images, portraits, icons, and logos.
+    </p>
+    <p>
+      This tool is particularly useful for integrating games from other launchers or emulated
+      games into the Steam interface with proper visuals. It can also apply custom branding
+      to the generated artwork.
+    </p>
+  </description>
+
+  <screenshots>
+    </screenshots>
+
+  <url type="homepage">https://github.com/liberavia/steam-shortcut-manager</url> <url type="bugtracker">https://github.com/liberavia/steam-shortcut-manager/issues</url> <provides>
+    <binary>steam-shortcut-manager</binary>
+    </provides>
+
+  <releases>
+    <release version="1.0.0" date="2025-05-14"> <description>
+        <p>Initial release.</p>
+        </description>
+    </release>
+  </releases>
+
+  <content_rating type="oars-1.1" /> <developer_name>André Gregor-Herrmann</developer_name> </component>

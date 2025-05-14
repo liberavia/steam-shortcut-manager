@@ -1,0 +1,39 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+env/
+pip-freeze.txt
+pip-requirements.txt
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Build artifacts
+build/
+dist/
+*.spec
+*.exe
+*.dmg
+*.pkg
+*.msi
+
+# Flatpak build directory
+build-dir/
+.flatpak-builder/
+
+# IDE-specific files
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# OS-specific files
+.DS_Store
+Thumbs.db

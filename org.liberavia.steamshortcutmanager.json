@@ -1,0 +1,43 @@
+{
+    "app-id": "org.liberavia.steamshortcutmanager",
+    "runtime": "org.freedesktop.Platform",
+    "runtime-version": "23.08",
+    "sdk": "org.freedesktop.Sdk",
+    "command": "steam-shortcut-manager",
+    "finish-args": [
+        "--filesystem=host",
+        "--share=ipc"
+    ],
+    "modules": [
+        {
+            "name": "python3-requirements",
+            "buildsystem": "simple",
+            "build-commands": [
+                "pip3 install --prefix=${FLATPAK_DEST} -r requirements.txt"
+            ],
+            "sources": [
+                {
+                    "type": "file",
+                    "path": "requirements.txt"
+                }
+            ]
+        },
+        {
+            "name": "steamshortcutmanager-app",
+            "buildsystem": "simple",
+            "build-commands": [
+                "install -D src/steam_shortcut_manager.py ${FLATPAK_DEST}/src/steam_shortcut_manager.py",
+                "install -D bin/steam-shortcut-manager ${FLATPAK_DEST}/bin/steam-shortcut-manager"
+            ],
+            "sources": [
+                {
+                    "type": "dir",
+                    "path": "."
+                }
+            ],
+            "post-install": [
+                "ln -sf /app/bin/steam-shortcut-manager /app/bin/org.liberavia.steamshortcutmanager"
+            ]
+        }
+    ]
+}

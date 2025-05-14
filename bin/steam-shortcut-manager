@@ -1,0 +1,4 @@
+#!/bin/bash
+# Wrapper script to execute the Python application within the Flatpak bundle.
+
+python3 /app/src/steam_shortcut_manager.py "$@"
