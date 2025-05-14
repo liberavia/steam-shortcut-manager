@@ -1,0 +1,56 @@
+name: Code Quality Checks
+
+on: [push, pull_request]
+
+jobs:
+  python-checks:
+    name: Python Code Quality
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install flake8 black mypy
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+
+      - name: Lint with flake8
+        run: |
+          flake8 src/steam_shortcut_manager.py --count --select=E9,F63,F7,F82 --show-source --statistics
+          flake8 src/steam_shortcut_manager.py --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+
+      - name: Check formatting with black
+        run: |
+          black --check src/steam_shortcut_manager.py
+
+      - name: Type check with mypy
+        run: |
+          mypy src/steam_shortcut_manager.py --ignore-missing-imports
+
+  flatpak-checks:
+    name: Flatpak Manifest and AppData
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install Flatpak tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y flatpak flatpak-builder libxml2-utils # libxml2-utils für xmllint
+
+      - name: Validate Flatpak Manifest
+        run: |
+          flatpak-builder --lint manifest org.liberavia.steamshortcutmanager.json
+          # flatpak-lint org.liberavia.steamshortcutmanager.json
+
+      - name: Validate AppData XML
+        run: |
+          xmllint --noout appdata/org.liberavia.steamshortcutmanager.appdata.xml
