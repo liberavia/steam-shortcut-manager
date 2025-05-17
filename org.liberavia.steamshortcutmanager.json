@@ -37,12 +37,20 @@
             "buildsystem": "simple",
             "build-commands": [
                 "install -D src/steam_shortcut_manager.py ${FLATPAK_DEST}/src/steam_shortcut_manager.py",
-                "install -D bin/steam-shortcut-manager ${FLATPAK_DEST}/bin/steam-shortcut-manager"
+                "install -D bin/steam-shortcut-manager ${FLATPAK_DEST}/bin/steam-shortcut-manager",
+                
+                "install -Dm644 share/org.liberavia.steamshortcutmanager.desktop ${FLATPAK_DEST}/share/applications/org.liberavia.steamshortcutmanager.desktop",
+                "install -Dm644 share/icons/hicolor/64x64/org.liberavia.steamshortcutmanager.png ${FLATPAK_DEST}/share/icons/hicolor/64x64/apps/org.liberavia.steamshortcutmanager.png",
+                "install -Dm644 share/icons/hicolor/128x128/org.liberavia.steamshortcutmanager.png ${FLATPAK_DEST}/share/icons/hicolor/128x128/apps/org.liberavia.steamshortcutmanager.png",
+                "install -Dm644 share/icons/hicolor/256x256/org.liberavia.steamshortcutmanager.png ${FLATPAK_DEST}/share/icons/hicolor/256x256/apps/org.liberavia.steamshortcutmanager.png",
+                "install -Dm644 share/icons/hicolor/512x512/org.liberavia.steamshortcutmanager.png ${FLATPAK_DEST}/share/icons/hicolor/512x512/apps/org.liberavia.steamshortcutmanager.png",
+                
+                "gtk-update-icon-cache -f -t ${FLATPAK_DEST}/share/icons/hicolor"
             ],
             "sources": [
                 {
                     "type": "dir",
-                    "path": "."
+                    "path": "." 
                 }
             ]
         }

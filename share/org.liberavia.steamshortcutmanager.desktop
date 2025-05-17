@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Steam Shortcut Manager
+Comment=Manage Steam non-Steam game shortcuts
+Exec=steam-shortcut-manager --help 
+Icon=org.liberavia.steamshortcutmanager 
+Terminal=true 
+Categories=Utility;System;Development;
+Keywords=steam;shortcut;manager;games;
