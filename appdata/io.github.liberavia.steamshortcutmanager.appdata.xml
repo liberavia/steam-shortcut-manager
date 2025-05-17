@@ -39,7 +39,21 @@
     <category>ConsoleOnly</category> <category>Game</category> <category>Settings</category> </categories>
 
   <releases>
-    <release version="1.0.0" date="YYYY-MM-DD"> <description>
+    <release version="1.1.1" date="2025-05-17"> <description>
+        <p>Bugfix-Release:</p>
+        <ul>
+          <li>Fixed wrong appdata.xml.</li>
+        </ul>
+      </description>
+    <release version="1.1.0" date="2025-05-17"> <description>
+        <p>Rebuild for proper appid:</p>
+        <ul>
+          <li>Changed app-id to proper value.</li>
+          <li>Added icons.</li>
+          <li>Added desktop file.</li>
+        </ul>
+      </description>
+    <release version="1.0.0" date="2025-05-14"> <description>
         <p>Initial release with core functionality:</p>
         <ul>
           <li>Add, remove, and check non-Steam game shortcuts.</li>
