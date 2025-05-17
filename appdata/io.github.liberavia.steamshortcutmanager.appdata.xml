@@ -54,6 +54,7 @@
           <li>Added desktop file.</li>
         </ul>
       </description>
+    </release>
     <release version="1.0.0" date="2025-05-14"> 
       <description>
         <p>Initial release with core functionality:</p>
