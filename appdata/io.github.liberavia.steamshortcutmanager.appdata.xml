@@ -25,27 +25,28 @@
   <launchable type="desktop-id">io.github.liberavia.steamshortcutmanager.desktop</launchable>
 
   <screenshots>
-    </screenshots>
+  </screenshots>
 
   <url type="homepage">https://github.com/liberavia/steam-shortcut-manager</url>
   <url type="bugtracker">https://github.com/liberavia/steam-shortcut-manager/issues</url>
   <provides>
     <binary>steam-shortcut-manager</binary>
-    </provides>
+  </provides>
 
   <categories>
     <category>Utility</category>
-    <category>System</category>
-    <category>ConsoleOnly</category> <category>Game</category> <category>Settings</category> </categories>
+  </categories>
 
   <releases>
-    <release version="1.1.1" date="2025-05-17"> <description>
-        <p>Bugfix-Release:</p>
-        <ul>
-          <li>Fixed wrong appdata.xml.</li>
-        </ul>
+    <release version="1.1.1" date="2025-05-17">
+      <description>
+          <p>Bugfix-Release:</p>
+          <ul>
+            <li>Fixed wrong appdata.xml.</li>
+          </ul>
       </description>
-    <release version="1.1.0" date="2025-05-17"> <description>
+    <release version="1.1.0" date="2025-05-17">
+      <description>
         <p>Rebuild for proper appid:</p>
         <ul>
           <li>Changed app-id to proper value.</li>
@@ -53,7 +54,8 @@
           <li>Added desktop file.</li>
         </ul>
       </description>
-    <release version="1.0.0" date="2025-05-14"> <description>
+    <release version="1.0.0" date="2025-05-14"> 
+      <description>
         <p>Initial release with core functionality:</p>
         <ul>
           <li>Add, remove, and check non-Steam game shortcuts.</li>
@@ -62,8 +64,8 @@
         </ul>
       </description>
     </release>
-    </releases>
+  </releases>
 
   <content_rating type="oars-1.1" /> <developer_name>André Gregor-Herrmann</developer_name>
   
-  </component>
+</component>
