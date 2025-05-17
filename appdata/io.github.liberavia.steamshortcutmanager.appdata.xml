@@ -6,7 +6,8 @@
   <summary>Manage non-Steam game shortcuts and artwork in your Steam library.</summary>
   
   <metadata_license>CC0-1.0</metadata_license>
-  <project_license>GPL-3.0-or-later</project_license> <description>
+  <project_license>GPL-3.0-or-later</project_license> 
+  <description>
     <p>
       Steam Shortcut Manager is a command-line tool that allows users to easily add, remove,
       and check for non-Steam game shortcuts in their Steam library. It also features
@@ -67,6 +68,7 @@
     </release>
   </releases>
 
-  <content_rating type="oars-1.1" /> <developer_name>André Gregor-Herrmann</developer_name>
+  <content_rating type="oars-1.1" />
+  <developer_name>André Gregor-Herrmann</developer_name>
   
 </component>
