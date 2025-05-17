@@ -2,9 +2,10 @@
 Version=1.0
 Type=Application
 Name=Steam Shortcut Manager
-Comment=Manage Steam non-Steam game shortcuts
-Exec=steam-shortcut-manager --help 
-Icon=org.liberavia.steamshortcutmanager 
-Terminal=true 
-Categories=Utility;System;Development;
-Keywords=steam;shortcut;manager;games;
+Comment=Manage Steam non-Steam game shortcuts and artwork
+Exec=flatpak run org.liberavia.steamshortcutmanager --help
+Icon=org.liberavia.steamshortcutmanager
+Terminal=true
+Categories=Utility;
+Keywords=steam;shortcut;manager;games;flatpak;linux;
+StartupNotify=false
