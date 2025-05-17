@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component type="console-application">
-  <id>org.liberavia.steamshortcutmanager</id> <name>Steam Shortcut Manager</name>
+  <id>org.liberavia.steamshortcutmanager</id>
+  
+  <name>Steam Shortcut Manager</name>
   <summary>Manage non-Steam game shortcuts and artwork in your Steam library.</summary>
-
+  
   <metadata_license>CC0-1.0</metadata_license>
-  <project_license>GPLv3</project_license>
-
-  <description>
+  <project_license>GPL-3.0-or-later</project_license> <description>
     <p>
       Steam Shortcut Manager is a command-line tool that allows users to easily add, remove,
       and check for non-Steam game shortcuts in their Steam library. It also features
@@ -16,22 +16,40 @@
     <p>
       This tool is particularly useful for integrating games from other launchers or emulated
       games into the Steam interface with proper visuals. It can also apply custom branding
-      to the generated artwork.
+      (watermark) to the generated artwork.
     </p>
   </description>
+
+  <icon type="stock">org.liberavia.steamshortcutmanager</icon>
+
+  <launchable type="desktop-id">org.liberavia.steamshortcutmanager.desktop</launchable>
 
   <screenshots>
     </screenshots>
 
-  <url type="homepage">https://github.com/liberavia/steam-shortcut-manager</url> <url type="bugtracker">https://github.com/liberavia/steam-shortcut-manager/issues</url> <provides>
+  <url type="homepage">https://github.com/liberavia/steam-shortcut-manager</url>
+  <url type="bugtracker">https://github.com/liberavia/steam-shortcut-manager/issues</url>
+  <provides>
     <binary>steam-shortcut-manager</binary>
     </provides>
 
-  <releases>
-    <release version="1.0.0" date="2025-05-14"> <description>
-        <p>Initial release.</p>
-        </description>
-    </release>
-  </releases>
+  <categories>
+    <category>Utility</category>
+    <category>System</category>
+    <category>ConsoleOnly</category> <category>Game</category> <category>Settings</category> </categories>
 
-  <content_rating type="oars-1.1" /> <developer_name>André Gregor-Herrmann</developer_name> </component>
+  <releases>
+    <release version="1.0.0" date="YYYY-MM-DD"> <description>
+        <p>Initial release with core functionality:</p>
+        <ul>
+          <li>Add, remove, and check non-Steam game shortcuts.</li>
+          <li>Automatic generation of Steam grid artwork (header, hero, portrait, icon, logo).</li>
+          <li>Customizable artwork backgrounds and optional watermark branding.</li>
+        </ul>
+      </description>
+    </release>
+    </releases>
+
+  <content_rating type="oars-1.1" /> <developer_name>André Gregor-Herrmann</developer_name>
+  
+  </component>
