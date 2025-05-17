@@ -24,7 +24,7 @@ A command-line tool for managing non-Steam game shortcuts within your Steam libr
 
 Once officially published on Flathub, you will be able to install it using:
  ```bash
-flatpak install flathub org.liberavia.steamshortcutmanager
+flatpak install flathub io.github.liberavia.steamshortcutmanager
 ```
 
 
@@ -41,14 +41,14 @@ flatpak install flathub org.liberavia.steamshortcutmanager
 
 3.  **Build and Install the Flatpak:**
     ```bash
-    flatpak-builder --user --install --force-clean build-dir org.liberavia.steamshortcutmanager.json
+    flatpak-builder --user --install --force-clean build-dir io.github.liberavia.steamshortcutmanager.json
     ```
     This command builds the Flatpak application, installs it for the current user, and cleans the build directory.
 
 4.  **Run the Application:**
     After a successful build and installation, you can run the tool:
     ```bash
-    flatpak run org.liberavia.steamshortcutmanager --help
+    flatpak run io.github.liberavia.steamshortcutmanager --help
     ```
 
 ## Usage
@@ -57,7 +57,7 @@ The tool is operated via the command line.
 
 **General Syntax:**
 ```bash
-flatpak run org.liberavia.steamshortcutmanager [options]
+flatpak run io.github.liberavia.steamshortcutmanager [options]
 ```
 
 ### Options Explained
@@ -100,7 +100,7 @@ flatpak run org.liberavia.steamshortcutmanager [options]
 
 1.  **Adding a Flatpak Application (e.g., Brave Browser):**
     ```bash
-    flatpak run org.liberavia.steamshortcutmanager \
+    flatpak run io.github.liberavia.steamshortcutmanager \
         --action add \
         --appid_tag "com.brave.Browser" \
         --name "Brave Web Browser" \
@@ -112,7 +112,7 @@ flatpak run org.liberavia.steamshortcutmanager [options]
 
 2.  **Adding a Native Linux Game:**
     ```bash
-    flatpak run org.liberavia.steamshortcutmanager \
+    flatpak run io.github.liberavia.steamshortcutmanager \
         --action add \
         --appid_tag "mycoolgame_native" \
         --name "My Cool Native Game" \
@@ -124,14 +124,14 @@ flatpak run org.liberavia.steamshortcutmanager [options]
 3.  **Removing an Application:**
     (Assumes `com.brave.Browser` was the `appid_tag` used when adding)
     ```bash
-    flatpak run org.liberavia.steamshortcutmanager \
+    flatpak run io.github.liberavia.steamshortcutmanager \
         --action remove \
         --appid_tag "com.brave.Browser"
     ```
 
 4.  **Checking if an Application Shortcut Exists:**
     ```bash
-    flatpak run org.liberavia.steamshortcutmanager \
+    flatpak run io.github.liberavia.steamshortcutmanager \
         --action check \
         --appid_tag "com.brave.Browser"
     ```

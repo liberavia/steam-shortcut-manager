@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component type="console-application">
-  <id>org.liberavia.steamshortcutmanager</id>
+  <id>io.github.liberavia.steamshortcutmanager</id>
   
   <name>Steam Shortcut Manager</name>
   <summary>Manage non-Steam game shortcuts and artwork in your Steam library.</summary>
@@ -20,9 +20,9 @@
     </p>
   </description>
 
-  <icon type="stock">org.liberavia.steamshortcutmanager</icon>
+  <icon type="stock">io.github.liberavia.steamshortcutmanager</icon>
 
-  <launchable type="desktop-id">org.liberavia.steamshortcutmanager.desktop</launchable>
+  <launchable type="desktop-id">io.github.liberavia.steamshortcutmanager.desktop</launchable>
 
   <screenshots>
     </screenshots>
