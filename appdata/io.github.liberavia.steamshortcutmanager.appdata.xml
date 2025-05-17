@@ -46,6 +46,7 @@
             <li>Fixed wrong appdata.xml.</li>
           </ul>
       </description>
+    </release>
     <release version="1.1.0" date="2025-05-17">
       <description>
         <p>Rebuild for proper appid:</p>
